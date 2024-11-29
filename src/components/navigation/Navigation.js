@@ -3,7 +3,7 @@
 import Button from '../shared/Button';
 
 const Navigation = ({ currentPage, setCurrentPage }) => {
-    const pages = ['首页', '我们的故事', '留言墙', '小游戏', '生日蛋糕'];
+    const pages = ['首页', '我们的故事', '留言墙', '小游戏', '生日蛋糕','动画'];
 
     return (
     <div className="fixed top-0 left-0 right-0 bg-white/70 backdrop-blur-sm shadow-md z-50">

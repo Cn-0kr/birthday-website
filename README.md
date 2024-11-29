@@ -28,6 +28,7 @@
 9.debug：上线后oss连接失败的问题
 10. 优化首页界面ok
 11. 优化动画效果 比如界面的突然出现等等 类似于这种
+12. 开源时添加json进行高级封装
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
