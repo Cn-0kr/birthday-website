@@ -11,19 +11,6 @@ const getConfig = () => {
         database: process.env.MYSQL_DATABASE,
     };
 
-    if (process.env.NODE_ENV === 'production') {
-        // 生产环境添加额外配置
-        return {
-            ...baseConfig,
-            ssl: false,
-            connectTimeout: 60000,
-            // 连接池设置
-            waitForConnections: true,
-            connectionLimit: 10,
-            queueLimit: 0,
-        };
-    }
-
     // 开发环境配置
     return {
         ...baseConfig,

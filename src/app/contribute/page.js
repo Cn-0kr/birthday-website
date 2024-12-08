@@ -181,8 +181,7 @@ const ContributePage = () => {
                                 id="content"
                                 name="content"
                                 required
-                                maxLength={200}
-                                rows="4"
+                                rows="8"
                                 className="w-full px-4 py-2 rounded-lg border border-purple-200 focus:outline-none focus:ring-2 focus:ring-[#FF9B50]"
                                 placeholder="写下你的祝福..."
                             />
