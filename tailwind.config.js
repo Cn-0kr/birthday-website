@@ -14,14 +14,14 @@ module.exports = {
       keyframes: {
         fall: {
           '0%': {
-            transform: 'translateY(0) translateX(0) rotate(-45deg)',
+            transform: 'translateY(0) translateX(0) rotate(45deg)',
             opacity: 0
           },
           '10%': {
             opacity: 0.5
           },
           '100%': {
-            transform: 'translateY(100vh) translateX(-100vh) rotate(-45deg)',
+            transform: 'translateY(100vh) translateX(-100vh) rotate(45deg)',
             opacity: 0
           }
         }

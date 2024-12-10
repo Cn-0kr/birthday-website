@@ -109,16 +109,6 @@ const Timeline = () => {
     const [events, setEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [formData, setFormData] = useState({
-        contributor: '',
-        title: '',
-        description: '',
-        date: '',
-    });
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [imagePreview, setImagePreview] = useState(null);
-    const fileInputRef = useRef(null);
 
     // 获取事件列表
     const fetchEvents = async () => {
@@ -143,82 +133,6 @@ const Timeline = () => {
         fetchEvents();
     }, []);
 
-    // 处理图片选择
-    const handleImageChange = (e) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            if (file.size > 5 * 1024 * 1024) {
-                alert('图片大小不能超过5MB');
-                return;
-            }
-            setSelectedImage(file);
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
-    // 处理表单输入
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    // 提交表单
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!selectedImage) {
-            alert('请选择图片');
-            return;
-        }
-
-        setIsSubmitting(true);
-        const submitData = new FormData();
-
-        // 添加所有表单数据
-        Object.entries(formData).forEach(([key, value]) => {
-            submitData.append(key, value);
-        });
-        submitData.append('image', selectedImage);
-
-        try {
-            const response = await fetch('/api/timeline', {
-                method: 'POST',
-                body: submitData,
-            });
-
-            if (!response.ok) {
-                throw new Error('提交失败');
-            }
-
-            // 重置表单
-            setFormData({
-                contributor: '',
-                title: '',
-                description: '',
-                date: '',
-            });
-            setSelectedImage(null);
-            setImagePreview(null);
-            if (fileInputRef.current) {
-                fileInputRef.current.value = '';
-            }
-
-            // 重新加载事件列表
-            await fetchEvents();
-            alert('回忆提交成功，等待审核！');
-        } catch (err) {
-            console.error('Error submitting:', err);
-            alert('提交失败，请稍后重试');
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
 
     if (isLoading) {
         return (
@@ -247,7 +161,7 @@ const Timeline = () => {
             <div className="max-w-6xl mx-auto">
                 {/* 时间轴标题 */}
                 <h2 className="text-3xl font-bold text-center text-[#E25E3E] mb-12">
-                    我们的故事
+                    回忆
                 </h2>
 
                 {/* 时间轴 */}
